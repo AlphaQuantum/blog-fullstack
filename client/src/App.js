@@ -2,39 +2,60 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+
 import Register from "./pages/Register"
 import Admin from "./pages/Admin"
 import Single from "./pages/Single"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 
+import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
+
+import "./style.scss";
+
 const router = createBrowserRouter([
-  {
+  {//I know i can use children, but i don't want to as for now
     path: "/",
-    element: <Home/>,
+    element:
+      <>
+        <Navbar />
+        <Home />
+        <Footer />
+      </>,
   },
   {
     path: "/admin",
-    element: <Admin/>,
+    element: <>
+      <Navbar />
+      <Admin />
+      <Footer />
+    </>,
   },
   {
-    path: "/single",
-    element: <Single/>,
+    path: "/post/:id",
+    element: <>
+      <Navbar />
+      <Single />
+      <Footer />
+    </>,
   },
   {
     path: "/login",
-    element: <Login/>,
+    element: <Login />,
   },
   {
     path: "/register",
-    element: <Register/>,
+    element: <Register />,
   },
 ]);
 
 function App() {
   return (
-    <div>
+    <div className="app">
+      <div className="container">
         <RouterProvider router={router} />
+      </div>
     </div>
   );
 }
